@@ -1,0 +1,63 @@
+public class NumerosPrimos {
+    
+    private int n;
+    
+    public NumerosPrimos (int n) {
+        this.n = n;
+    }
+    
+    public int[] calculatePrimes(int n) {
+        int[] primes = new int[n];
+        int count = 0;
+        int number = 2;
+        while (count < n) {
+            boolean isPrime = true;
+            for (int i = 2; i <= Math.sqrt(number); i++) {
+                if (number % i == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                primes[count] = number;
+                count++;
+            }
+            number++;
+        }
+        return primes;
+    }
+    
+    public int[] calculateFibonacci(int n) {
+        int[] fibonacci = new int[n];
+        fibonacci[0] = 0;
+        fibonacci[1] = 1;
+        for (int i = 2; i < n; i++) {
+            fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
+        }
+        return fibonacci;
+    }
+
+    public static void main(String[] args) {
+        int n = 20;
+        NumerosPrimos nc = new NumerosPrimos(n);
+        
+        int[] primes = nc.calculatePrimes(n);
+        System.out.println("Números primos:");
+        for (int i = 0; i < primes.length; i++) {
+            if (primes[i] != 0) {
+                System.out.print(primes[i] + ", ");
+            } else {
+                break;
+            }
+        }
+        
+        System.out.println("\n");
+        
+        int[] fibonacci = nc.calculateFibonacci(n);
+        System.out.println("Sucesión de Fibonacci:");
+        for (int i = 0; i < fibonacci.length; i++) {
+            System.out.print(fibonacci[i] + ", ");
+        }
+    }
+
+}
